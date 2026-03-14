@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-bebas: 'Bebas Neue';
+  --font-cormorant: 'Cormorant Garamond';
+  --font-dm: 'DM Sans';
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #F5F0E8;
+  color: #1A1614;
+  cursor: none;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #F5F0E8; }
+::-webkit-scrollbar-thumb { background: #C4503A; }
+
+/* ─── ANIMAÇÕES ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes testimonialSlide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-fadeUp        { animation: fadeUp 0.8s forwards; }
+.animate-fadeIn        { animation: fadeIn 1.2s forwards; }
+.animate-marquee       { animation: marqueeScroll 20s linear infinite; }
+.animate-testimonials  { animation: testimonialSlide 30s linear infinite; }
+.animate-testimonials:hover { animation-play-state: paused; }
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── BOTÃO PRIMÁRIO (preenchimento lateral) ─── */
+.btn-fill {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s;
+}
+.btn-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #C4503A;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.btn-fill:hover::after { transform: scaleX(1); }
+.btn-fill span { position: relative; z-index: 1; }
+
+/* ─── BOTÃO GHOST ─── */
+.btn-ghost-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  transition: color 0.2s;
+}
+.btn-ghost-line::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s;
+  flex-shrink: 0;
+}
+.btn-ghost-line:hover::before { width: 44px; }
+
+/* ─── NAVBAR ─── */
+nav a,
+nav span {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+}
+
+/* ─── CARDS DE SERVIÇO ─── */
+.service-card {
+  transition: background 0.35s;
+  cursor: default;
+}
+.service-card:hover {
+  background: #1A1614 !important;
+}
+
+.card-num {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  font-family: var(--font-bebas);
+  font-size: 52px;
+  color: rgba(26, 22, 20, 0.07);
+  line-height: 1;
+  transition: color 0.3s;
+  user-select: none;
+}
+.service-card:hover .card-num { color: rgba(255, 255, 255, 0.04); }
+
+.card-title {
+  font-size: 20px !important;
+  line-height: 1.3;
+  transition: color 0.3s;
+}
+.service-card:hover .card-title { color: #F5F0E8 !important; }
+
+.card-desc {
+  font-size: 14px !important;
+  line-height: 1.85;
+  transition: color 0.3s;
+}
+.service-card:hover .card-desc { color: rgba(245, 240, 232, 0.55) !important; }
+
+.card-price {
+  font-size: 26px !important;
+  transition: color 0.3s;
+}
+.service-card:hover .card-price { color: #C4503A !important; }
+
+.card-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: #C4503A;
+  transition: width 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.service-card:hover .card-line { width: 100%; }
+
+/* ─── EQUIPE ─── */
+.team-photo-inner {
+  transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.team-card:hover .team-photo-inner { transform: scale(1.05); }
+
+/* ─── FORMULÁRIO ─── */
+.form-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(26, 22, 20, 0.18);
+  padding: 12px 0;
+  font-size: 15px;
+  font-family: var(--font-dm);
+  font-weight: 300;
+  color: #1A1614;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.form-input:focus  { border-color: #C4503A; }
+.form-input::placeholder { color: rgba(26, 22, 20, 0.35); font-size: 14px; }
+
+/* ─── DEPOIMENTOS ─── */
+.testimonial-card p {
+  font-size: 18px !important;
+  line-height: 1.75;
+}
+
+/* ─── SECTION LABELS ─── */
+.section-label-text {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #C4503A;
+}
+
+/* ─── SECTION TITLES ─── */
+.section-title-text {
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  line-height: 1.18;
+  font-size: clamp(40px, 4.5vw, 60px);
+}
+
+/* ─── SECTION BODY ─── */
+.section-body-text {
+  font-size: 15px;
+  line-height: 2;
+  color: #8C7E72;
+}
+
+/* ─── MARQUEE ─── */
+.marquee-item {
+  font-family: var(--font-bebas);
+  font-size: 15px;
+  letter-spacing: 0.28em;
+  color: rgba(245, 240, 232, 0.45);
+  padding: 0 44px;
+}
+
+/* ─── FOOTER ─── */
+footer a {
+  font-size: 14px;
+}
+footer p {
+  font-size: 13px;
+}
